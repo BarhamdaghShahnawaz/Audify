@@ -1,4 +1,4 @@
-// Initialize variables
+
 let songs = [];
 let currentSong = 0;
 let audioElement = new Audio();
@@ -10,7 +10,6 @@ let songContainer = document.getElementById('songContainer');
 let uploadButton = document.getElementById('uploadButton');
 let fileUpload = document.getElementById('fileUpload');
 
-// Default songs
 const defaultSongs = [
     {
         name: "AAj BHi Song",
@@ -44,13 +43,11 @@ const defaultSongs = [
     }
 ];
 
-// Initialize the player
 function initializePlayer() {
-    // Load default songs
+
     songs = [...defaultSongs];
     renderSongList();
-    
-    // Set up event listeners
+
     masterPlay.addEventListener('click', togglePlay);
     progressBar.addEventListener('change', seekSong);
     audioElement.addEventListener('timeupdate', updateProgress);
@@ -61,7 +58,6 @@ function initializePlayer() {
     fileUpload.addEventListener('change', handleFileUpload);
 }
 
-// Render song list
 function renderSongList() {
     songContainer.innerHTML = '';
     songs.forEach((song, index) => {
@@ -76,27 +72,24 @@ function renderSongList() {
             </span>
         `;
         songContainer.appendChild(songItem);
-        
-        // Add click event to play the song
+
         songItem.querySelector('.songItemPlay').addEventListener('click', () => playSong(index));
     });
 }
 
-// Play a specific song
 function playSong(index) {
     currentSong = index;
     const song = songs[currentSong];
-    
+
     audioElement.src = song.file;
     audioElement.play();
-    
+
     masterPlay.classList.remove('fa-play-circle');
     masterPlay.classList.add('fa-pause-circle');
-    
+
     gif.style.opacity = 1;
     masterSongName.innerText = `${song.name} - ${song.artist}`;
-    
-    // Highlight the playing song
+
     const allSongItems = document.querySelectorAll('.songItem');
     allSongItems.forEach((item, i) => {
         const icon = item.querySelector('.songItemPlay');
@@ -112,11 +105,11 @@ function playSong(index) {
     });
 }
 
-// Toggle play/pause
+
 function togglePlay() {
     if (audioElement.paused || audioElement.currentTime <= 0) {
         if (audioElement.src === '') {
-            playSong(0); // Play first song if none is selected
+            playSong(0);
         } else {
             audioElement.play();
         }
@@ -131,7 +124,6 @@ function togglePlay() {
     }
 }
 
-// Update progress bar
 function updateProgress() {
     if (audioElement.duration) {
         const progress = (audioElement.currentTime / audioElement.duration) * 100;
@@ -139,54 +131,50 @@ function updateProgress() {
     }
 }
 
-// Seek song
 function seekSong() {
     const seekTime = (progressBar.value / 100) * audioElement.duration;
     audioElement.currentTime = seekTime;
 }
 
-// Play next song
 function playNext() {
     currentSong = (currentSong + 1) % songs.length;
     playSong(currentSong);
 }
 
-// Play previous song
 function playPrevious() {
     currentSong = (currentSong - 1 + songs.length) % songs.length;
     playSong(currentSong);
 }
 
-// Handle file upload
 function handleFileUpload(event) {
     const files = event.target.files;
     if (files.length > 0) {
         const file = files[0];
-        const fileName = file.name.replace(/\.[^/.]+$/, ""); // Remove extension
-        
-        // Create a URL for the uploaded file
+        const fileName = file.name.replace(/\.[^/.]+$/, "");
+
+
         const fileURL = URL.createObjectURL(file);
-        
-        // Add the new song to the playlist
+
+
         const newSong = {
             name: fileName,
             artist: "Uploaded Song",
             file: fileURL,
             duration: "--:--"
         };
-        
+
         songs.push(newSong);
         renderSongList();
-        
-        // Play the uploaded song if no song is playing
+
+
         if (audioElement.paused || audioElement.src === '') {
             playSong(songs.length - 1);
         }
-        
-        // Reset file input
+
+
         event.target.value = '';
     }
 }
 
-// Initialize the player when the page loads
+
 window.onload = initializePlayer;
