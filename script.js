@@ -178,3 +178,30 @@ function handleFileUpload(event) {
 
 
 window.onload = initializePlayer;
+
+const volumeSlider = document.getElementById('volume-slider');
+const volumeIcon = document.getElementById('volume-icon');
+
+volumeSlider.addEventListener('input', function () {
+    audioElement.volume = this.value;
+
+    if (this.value == 0) {
+        volumeIcon.className = 'fas fa-volume-mute';
+    } else if (this.value < 0.5) {
+        volumeIcon.className = 'fas fa-volume-down';
+    } else {
+        volumeIcon.className = 'fas fa-volume-up';
+    }
+});
+
+volumeIcon.addEventListener('click', function () {
+    if (audioElement.volume > 0) {
+        audioElement.volume = 0;
+        volumeSlider.value = 0;
+        this.className = 'fas fa-volume-mute';
+    } else {
+        audioElement.volume = 0.7;
+        volumeSlider.value = 0.7;
+        this.className = 'fas fa-volume-up';
+    }
+});
