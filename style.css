@@ -208,7 +208,6 @@ nav ul li {
 }
 
 #volume-slider {
- -webkit-appearance: none;
   width: 100%;
   height: 6px;
   background: #555;
