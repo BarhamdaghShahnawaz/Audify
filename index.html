@@ -15,6 +15,10 @@
     <nav>
         <ul>
             <li class="brand"><img src="logo.png" alt="Audify Logo" /> Audify</li>
+            <li class="upload-btn">
+                <input type="file" id="fileUpload" accept="audio/*" style="display: none;">
+                <button id="uploadButton"><i class="fas fa-upload"></i> Upload Song</button>
+            </li>
         </ul>
     </nav>
 
@@ -22,89 +26,26 @@
         <div class="container">
             <div class="songList">
                 <h1>Best of NCS - No Copyright Sounds</h1>
-                <div class="songItemContainer">
-                    <div class="songItem">
-                        <img src="cover1.jpg" alt="AAj BHi Song Cover" />
-                        <span class="songName">AAj BHi Song_Vishal Mishra</span>
-                        <span class="songlistplay">
-                            <span class="timestamp">04:20 
-                                <i id="song-0" class="far songItemPlay fa-play-circle" aria-label="Play AAj BHi"></i>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="songItem">
-                        <img src="cover2.jpg" alt="Chali Kahani Song Cover" />
-                        <span class="songName">Chali Kahani Song_A.R Rahman</span>
-                        <span class="songlistplay">
-                            <span class="timestamp">05:00 
-                                <i id="song-1" class="far songItemPlay fa-play-circle" aria-label="Play Chali Kahani"></i>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="songItem">
-                        <img src="cover3.jpg" alt="Dil Meri Na Sune Song Cover" />
-                        <span class="songName">Dil Meri Na Sune Song_Atif Aslam</span>
-                        <span class="songlistplay">
-                            <span class="timestamp">04:05 
-                                <i id="song-2" class="far songItemPlay fa-play-circle" aria-label="Play Dil Meri Na Sune"></i>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="songItem">
-                        <img src="cover4.jpg" alt="Lo maan liya Song Cover" />
-                        <span class="songName">Lo maan liya Song _Arijit Singh</span>
-                        <span class="songlistplay">
-                            <span class="timestamp">04:42 
-                                <i id="song-3" class="far songItemPlay fa-play-circle" aria-label="Play Lo maan liya"></i>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="songItem">
-                        <img src="cover5.jpg" alt="RETRO - GULL AINAA Song Cover" />
-                        <span class="songName">RETRO - GULL AINAA Song_Hriday Gattani</span>
-                        <span class="songlistplay">
-                            <span class="timestamp">05:34 
-                                <i id="song-4" class="far songItemPlay fa-play-circle" aria-label="Play RETRO - GULL AINAA"></i>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="songItem">
-                        <img src="cover6.jpg" alt="tu hi hai aashiqui Song Cover" />
-                        <span class="songName">tu hi hai aashiqui Song_Arijit Singh</span>
-                        <span class="songlistplay">
-                            <span class="timestamp">04:25 
-                                <i id="song-5" class="far songItemPlay fa-play-circle" aria-label="Play tu hi hai aashiqui"></i>
-                            </span>
-                        </span>
-                    </div>
-                    <div class="songItem">
-                        <img src="cover7.jpg" alt="Zara Sa Song Cover" />
-                        <span class="songName">Zara Sa Song_KK _ Pritam</span>
-                        <span class="songlistplay">
-                            <span class="timestamp">06:09 
-                                <i id="song-6" class="far songItemPlay fa-play-circle" aria-label="Play Zara Sa"></i>
-                            </span>
-                        </span>
-                    </div>
+                <div class="songItemContainer" id="songContainer">
+                    <!-- Songs will be added dynamically -->
                 </div>
             </div>
-            <div class="songBanner"></div>
         </div>
     </main>
 
     <div class="bottom">
         <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100" />
+        <div class="songInfo">
+            <img src="playing.gif" width="42" alt="Playing Animation" id="gif" />
+            <span id="masterSongName">No song selected</span>
+        </div>
         <div class="icons">
-            <!-- fontawesome icons -->
             <i class="fas fa-3x fa-step-backward" id="previous" aria-label="Previous"></i>
             <i class="far fa-3x fa-play-circle" id="masterPlay" aria-label="Play/Pause"></i>
             <i class="fas fa-3x fa-step-forward" id="next" aria-label="Next"></i>
         </div>
-        <div class="songInfo">
-            <img src="playing.gif" width="42" alt="Playing Animation" id="gif" />
-            <span id="masterSongName">Warriyo - Mortals [NCS Release]</span>
-        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 
